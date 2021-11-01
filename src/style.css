@@ -10,6 +10,7 @@
     --side-panel-text-color: black;
     --main-panel-color: #f7f7f7;
     --side-panel-size: 17rem;
+    --roboto-font: 'Roboto', sans-serif;
 }
 
 #app {
@@ -46,7 +47,7 @@
 ul {
     grid-area: 'side-panel';
     background: var(--side-panel-color);
-    padding: 20px 0 10px 10px;
+    padding: 1.25rem 0 0.625rem 0.625rem;
     border-right: 0.1rem solid var(--side-panel-right-border);
     width: var(--side-panel-size);
     overflow: hidden;
@@ -54,16 +55,18 @@ ul {
 
 ul li {
     list-style: none;
-    padding: 15px;
+    padding: 0.938rem;
     padding-right: 0;
     color: black;
-    font-size: 15px;
-    margin-bottom: 10px;
+    font-size: 0.938rem;
+    margin-bottom: 0.625rem;
     cursor: pointer;
     position: relative;
     transition: 0.5s;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-top-left-radius: 1.25rem;
+    border-bottom-left-radius: 1.25rem;
+    font-family: var(--roboto-font);
+    font-size: 1.2rem;
 }
 
 ul li:hover {
