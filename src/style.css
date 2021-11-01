@@ -1,3 +1,84 @@
-h1 {
-    color: red;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --side-panel-color: #eee;
+    --side-panel-right-border: rgb(185,185,185);
+    --side-panel-text-color: black;
+    --main-panel-color: #f7f7f7;
+    --side-panel-size: 17rem;
+}
+
+#app {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 'header' 'main';
+}
+
+#app header {
+    grid-area: header;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+    background-color: wheat;
+}
+
+#app header h1 {
+    margin-left: 1rem;
+}
+
+#app main {
+    grid-area: main;
+    background-color: blue;
+    display: grid;
+    grid-template-columns: var(--side-panel-size) auto;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'side-panel' 'main-panel';
+}
+
+ul {
+    grid-area: 'side-panel';
+    background: var(--side-panel-color);
+    padding: 20px 0 10px 10px;
+    border-right: 0.1rem solid var(--side-panel-right-border);
+    width: var(--side-panel-size);
+    overflow: hidden;
+}
+
+ul li {
+    list-style: none;
+    padding: 15px;
+    padding-right: 0;
+    color: black;
+    font-size: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+ul li:hover {
+    transition: 0s;
+    background: rgb(221, 221, 221);
+}
+
+ul #side-panel-hr {
+    width: 15rem;
+    opacity: 0.5;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 0.5rem;
+}
+
+main #main-panel {
+    background-color: var(--main-panel-color);
 }
