@@ -33,11 +33,11 @@
 
 #app header h1 {
     margin-left: 1rem;
+    font-family: 'Roboto', sans-serif;
 }
 
 #app main {
     grid-area: main;
-    background-color: blue;
     display: grid;
     grid-template-columns: var(--side-panel-size) auto;
     grid-template-rows: 1fr;
@@ -84,4 +84,44 @@ ul #side-panel-hr {
 
 main #main-panel {
     background-color: var(--main-panel-color);
+    display: grid;
+    grid-template-rows: 4rem auto;
+    grid-template-areas: 
+    'project-header'
+    'todo-list-container';
+}
+
+#project-header {
+    display: grid;
+    font-family: 'Roboto', sans-serif;
+}
+
+#project-header #project-title-container {
+    display: grid;
+    background-color: blue;
+    align-items: center;
+}
+
+#project-title-container #project-title {
+    margin-left: 1rem;
+    font-size: 2.5rem;
+}
+
+#main-container {
+    background-color: blueviolet;
+    font-family: 'Roboto', sans-serif;
+    display: grid;
+    grid-template-columns: auto 20rem;
+}
+
+#todo-list-container {
+    background-color: burlywood;
+}
+
+#todo-list {
+    background-color: purple;
+}
+
+#todo-information-container {
+    background-color: cadetblue;
 }
