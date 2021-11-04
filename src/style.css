@@ -44,8 +44,8 @@
     grid-template-areas: 'side-panel' 'main-panel';
 }
 
-ul {
-    grid-area: 'side-panel';
+#side-panel {
+    grid-area: side-panel;
     background: var(--side-panel-color);
     padding: 1.25rem 0 0.625rem 0.625rem;
     border-right: 0.1rem solid var(--side-panel-right-border);
@@ -53,12 +53,10 @@ ul {
     overflow: hidden;
 }
 
-ul li {
+#side-panel .project {
     list-style: none;
-    padding: 0.938rem;
-    padding-right: 0;
+    padding: 0.938rem 0 0.938rem 0.938rem;
     color: black;
-    font-size: 0.938rem;
     margin-bottom: 0.625rem;
     cursor: pointer;
     position: relative;
@@ -69,12 +67,12 @@ ul li {
     font-size: 1.2rem;
 }
 
-ul li:hover {
+#side-panel .project:hover {
     transition: 0s;
     background: rgb(221, 221, 221);
 }
 
-ul #side-panel-hr {
+#side-panel #side-panel-hr {
     width: 15rem;
     opacity: 0.5;
     margin-top: 1rem;
@@ -93,6 +91,7 @@ main #main-panel {
 
 #project-header {
     display: grid;
+    grid-area: project-header;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -114,14 +113,53 @@ main #main-panel {
     grid-template-columns: auto 20rem;
 }
 
+#todo-information-container {
+    background-color: cadetblue;
+}
+
 #todo-list-container {
     background-color: burlywood;
 }
 
 #todo-list {
-    background-color: purple;
+    width: 80rem;
+    margin: 2.5rem auto;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    height: 45rem;
 }
 
-#todo-information-container {
-    background-color: cadetblue;
+#todo-list::-webkit-scrollbar {
+    display: none;
 }
+
+.todo {
+    margin: 0.5rem;
+    display: flex;
+    align-items: center;
+    border-top: 0.1rem solid blue;
+    border-bottom: 0.1rem solid blue;
+    background-color: white;
+    height: 2.5rem;
+}
+
+.todo .checkbox {
+    
+}
+
+.todo .task {
+    
+}
+
+.todo .task-date {
+    
+}
+
+.todo .task-edit {
+    
+}
+
+.todo .task-delete {
+    
+}
+
