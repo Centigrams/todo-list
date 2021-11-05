@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 <script defer src="main.js"></script></head>
 
 <body>
@@ -18,13 +18,13 @@
         </header>
         <main>
             <ul id="side-panel">
-                <li>All</li>
-                <li>Scheduled</li>
-                <li>Important</li>
+                <li class="project">All</li>
+                <li class="project">Scheduled</li>
+                <li class="project">Important</li>
                 <hr id="side-panel-hr">
-                <li>School Projects</li>
-                <li>Homework</li>
-              </ul>
+                <li class="project">School Projects</li>
+                <li class="project">Homework</li>
+            </ul>
             <div id="main-panel">
                 <div id="project-header">
                     <div id="project-title-container">
@@ -34,9 +34,37 @@
                 <div id="main-container">
                     <div id="todo-list-container">
                         <div id="todo-list">
-                            <li class="todo">
-                                <!-- TODO: Structure todo item -->
-                            </li>
+
+                            <div class="todo">
+                                <div class="left-container">
+                                    <input class="checkbox" type="checkbox">
+                                    <p class="task">Walk the dog.</p>
+                                </div>
+                                <div class="right-container">
+                                    <p class="task-date">12/12/2004</p>
+                                    <div class="edit-delete-container">
+                                        <button class="task-edit">Edit</button>
+                                        <button class="task-delete">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="todo">
+                                <div class="left-container">
+                                    <input class="checkbox" type="checkbox">
+                                    <p class="task">Walk the dog.</p>
+                                </div>
+                                <div class="right-container">
+                                    <div class="task-date-container">
+                                        <p class="task-date">No due date</p>
+                                    </div>
+                                    <div class="edit-delete-container">
+                                        <button class="task-edit">Edit</button>
+                                        <button class="task-delete">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                     <div id="todo-information-container">
