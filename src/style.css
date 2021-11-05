@@ -93,11 +93,11 @@ main #main-panel {
     display: grid;
     grid-area: project-header;
     font-family: 'Roboto', sans-serif;
+    background-color: white;
 }
 
 #project-header #project-title-container {
     display: grid;
-    background-color: blue;
     align-items: center;
 }
 
@@ -107,7 +107,6 @@ main #main-panel {
 }
 
 #main-container {
-    background-color: blueviolet;
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: auto 20rem;
@@ -118,7 +117,7 @@ main #main-panel {
 }
 
 #todo-list-container {
-    background-color: burlywood;
+    background-color: white;
 }
 
 #todo-list {
@@ -136,6 +135,7 @@ main #main-panel {
 .todo {
     margin: 0.5rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border-top: 0.1rem solid blue;
     border-bottom: 0.1rem solid blue;
@@ -143,23 +143,34 @@ main #main-panel {
     height: 2.5rem;
 }
 
+.todo .left-container {
+    display: flex;
+    width: 100%;
+}
+
 .todo .checkbox {
-    
+    margin-right: 1rem;
+    align-self: center;
+    width: 1.5rem;
+    height: 1.5rem;
+
 }
 
 .todo .task {
-    
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
 }
 
-.todo .task-date {
-    
+.todo .right-container {
+    display: flex;
+    width: 15rem;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.todo .task-edit {
-    
+.right-container .edit-delete-container {
+    display: flex;
+    justify-content: space-between;
+    width: 5.8rem;
 }
-
-.todo .task-delete {
-    
-}
-
