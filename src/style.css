@@ -6,7 +6,7 @@
 
 :root {
     --side-panel-color: #eee;
-    --side-panel-right-border: rgb(185,185,185);
+    --side-panel-right-border: rgb(185, 185, 185);
     --side-panel-text-color: black;
     --main-panel-color: #f7f7f7;
     --side-panel-size: 17rem;
@@ -60,14 +60,33 @@
     margin-bottom: 0.625rem;
     cursor: pointer;
     position: relative;
-    transition: 0.5s;
     border-top-left-radius: 1.25rem;
     border-bottom-left-radius: 1.25rem;
     font-family: var(--roboto-font);
     font-size: 1.2rem;
 }
 
-#side-panel .project:hover {
+.new-project {
+    padding: 0.938rem 0 0.938rem 0.938rem;
+    color: black;
+    margin-bottom: 0.625rem;
+    cursor: pointer;
+    position: relative;
+    border-top-left-radius: 1.25rem;
+    border-bottom-left-radius: 1.25rem;
+    font-family: var(--roboto-font);
+    font-size: 1.2rem;
+    background: transparent;
+    border: none;
+}
+
+
+.new-project:hover {
+    transition: 0s;
+    background: rgb(221, 221, 221);
+}
+
+.project:hover {
     transition: 0s;
     background: rgb(221, 221, 221);
 }
@@ -84,9 +103,7 @@ main #main-panel {
     background-color: var(--main-panel-color);
     display: grid;
     grid-template-rows: 4rem auto;
-    grid-template-areas: 
-    'project-header'
-    'todo-list-container';
+    grid-template-areas: 'project-header' 'todo-list-container';
 }
 
 #project-header {
@@ -124,7 +141,6 @@ main #main-panel {
     width: 80rem;
     margin: 2.5rem auto;
     overflow-y: scroll;
-    scrollbar-width: none;
     height: 45rem;
 }
 
@@ -181,4 +197,15 @@ main #main-panel {
 
 .edit-delete-container .task-delete {
     cursor: pointer;
+}
+
+.add-todo {
+    margin: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.1rem solid blue;
+    border-bottom: 0.1rem solid blue;
+    background-color: var(--main-panel-color);
+    height: 2.5rem;
 }
