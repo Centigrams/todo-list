@@ -17,14 +17,25 @@
             <h1>To-do List</h1>
         </header>
         <main>
-            <ul id="side-panel">
-                <li class="project">All</li>
-                <li class="project">Scheduled</li>
-                <li class="project">Important</li>
+            <div id="side-panel">
+                <ul>
+                    <li class="project">All</li>
+                    <li class="project">Scheduled</li>
+                    <li class="project">Important</li>
+                </ul>
                 <hr id="side-panel-hr">
-                <li class="project">School Projects</li>
-                <li class="project">Homework</li>
-            </ul>
+                <ul>
+                    <li class="project">School Projects</li>
+                    <li class="project">Homework</li>
+                </ul>
+                <form action="">
+                    <input 
+                    type="text" 
+                    aria-label="new-project" 
+                    class="new-project"
+                    placeholder=" + Add new project">
+                </form>
+            </div>
             <div id="main-panel">
                 <div id="project-header">
                     <div id="project-title-container">
@@ -64,7 +75,10 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
+                            <div class="add-todo">
+                                <p>+ Add new task</p>
+                            </div>
                         </div>
                     </div>
                     <div id="todo-information-container">
