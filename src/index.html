@@ -29,11 +29,7 @@
                     <li class="project">Homework</li>
                 </ul>
                 <form action="">
-                    <input 
-                    type="text" 
-                    aria-label="new-project" 
-                    class="new-project"
-                    placeholder=" + Add new project">
+                    <input type="text" aria-label="new-project" class="new-project" placeholder=" + Add new project">
                 </form>
             </div>
             <div id="main-panel">
@@ -45,40 +41,43 @@
                 <div id="main-container">
                     <div id="todo-list-container">
                         <div id="todo-list">
-
-                            <div class="todo">
-                                <div class="left-container">
-                                    <input class="checkbox" type="checkbox">
-                                    <p class="task">Walk the dog.</p>
+                            <!-- This div will hold the actual tasks, 
+                                it was added so that the input field to add tasks 
+                                won't interfere with the actual tasks -->
+                            <div>
+                                <div class="todo">
+                                    <div class="left-container">
+                                        <input class="checkbox" type="checkbox">
+                                        <p class="task">Walk the dog.</p>
+                                    </div>
+                                    <div class="right-container">
+                                        <p class="task-date">12/12/2004</p>
+                                        <div class="edit-delete-container">
+                                            <button class="task-edit">Edit</button>
+                                            <button class="task-delete">Delete</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="right-container">
-                                    <p class="task-date">12/12/2004</p>
-                                    <div class="edit-delete-container">
-                                        <button class="task-edit">Edit</button>
-                                        <button class="task-delete">Delete</button>
+
+                                <div class="todo">
+                                    <div class="left-container">
+                                        <input class="checkbox" type="checkbox">
+                                        <p class="task">Walk the dog.</p>
+                                    </div>
+                                    <div class="right-container">
+                                        <div class="task-date-container">
+                                            <p class="task-date">No due date</p>
+                                        </div>
+                                        <div class="edit-delete-container">
+                                            <button class="task-edit">Edit</button>
+                                            <button class="task-delete">Delete</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="todo">
-                                <div class="left-container">
-                                    <input class="checkbox" type="checkbox">
-                                    <p class="task">Walk the dog.</p>
-                                </div>
-                                <div class="right-container">
-                                    <div class="task-date-container">
-                                        <p class="task-date">No due date</p>
-                                    </div>
-                                    <div class="edit-delete-container">
-                                        <button class="task-edit">Edit</button>
-                                        <button class="task-delete">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="add-todo">
-                                <p>+ Add new task</p>
-                            </div>
+                            <form>
+                                <input class="add-todo" placeholder="+ Add new task">
+                            </form>
                         </div>
                     </div>
                     <div id="todo-information-container">
