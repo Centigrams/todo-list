@@ -17,19 +17,19 @@
             <h1>To-do List</h1>
         </header>
         <main>
-            <div id="side-panel">
-                <ul>
+            <div id="side-panel">   
+                <ul data-default-projects>
                     <li class="project">All</li>
                     <li class="project">Scheduled</li>
                     <li class="project">Important</li>
                 </ul>
                 <hr id="side-panel-hr">
-                <ul>
+                <ul data-projects>
                     <li class="project">School Projects</li>
                     <li class="project">Homework</li>
                 </ul>
-                <form action="">
-                    <input type="text" aria-label="new-project" class="new-project" placeholder=" + Add new project">
+                <form action="" data-add-new-projects-form>
+                    <input data-add-new-projects-input type="text" aria-label="new-project" class="new-project" placeholder=" + Add new project">
                 </form>
             </div>
             <div id="main-panel">
@@ -44,7 +44,7 @@
                             <!-- This div will hold the actual tasks, 
                                 it was added so that the input field to add tasks 
                                 won't interfere with the actual tasks -->
-                            <div>
+                            <div data-todos>
                                 <div class="todo">
                                     <div class="left-container">
                                         <input class="checkbox" type="checkbox">
