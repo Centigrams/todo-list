@@ -1,11 +1,13 @@
-import { Project } from './projects-factory.js';
+import { Project } from './factories/projects-factory.js';
 
 const projectsHandler = (function () {
   const projectsContainer = document.querySelector('[data-projects]');
   const newProjectInputField = document.querySelector('[data-add-new-projects-input]');
   const newProjectInputForm = document.querySelector('[data-add-new-projects-form]');
+  // Namespace local storage key to avoid conflicting with other websites.
+  const localStorageProjectsArrayKey = 'todo.projects';
 
-  let projectsArray = [];
+  let projectsArray =  JSON.parse(localStorage.getItem(localStorageProjectsArrayKey)) || [];
   
   const renderProjects = () => {
     projectsArray.forEach(project => {
@@ -23,9 +25,18 @@ const projectsHandler = (function () {
     }
   };
 
+  const saveToLocalStorage = () => {
+    localStorage.setItem(localStorageProjectsArrayKey, JSON.stringify(projectsArray));
+  };
+
   const render = () => {
     refreshProjectsList();
     renderProjects();
+  };
+
+  const persistToLocalStorage = () => {
+    saveToLocalStorage();
+    render();
   };
 
   const addNewProject = () => {
@@ -34,7 +45,7 @@ const projectsHandler = (function () {
     const newProject = Project(inputValue);
     newProjectInputForm.reset();
     projectsArray.push(newProject);
-    render();
+    persistToLocalStorage();
   };
 
   return {
