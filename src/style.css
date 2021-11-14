@@ -66,6 +66,11 @@
     font-size: 1.2rem;
 }
 
+#side-panel .active-project {
+    border: 0.1rem solid gray;
+    width: 101%;
+}
+
 .new-project {
     padding: 0.938rem 0 0.938rem 0.938rem;
     color: black;

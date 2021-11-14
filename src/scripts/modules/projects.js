@@ -8,7 +8,7 @@ const projectsHandler = (function () {
   const localStorageProjectsArrayKey = 'todo.projects';
 
   let projectsArray =  JSON.parse(localStorage.getItem(localStorageProjectsArrayKey)) || [];
-  
+
   const renderProjects = () => {
     projectsArray.forEach(project => {
       const listElement = document.createElement('li');
@@ -25,7 +25,7 @@ const projectsHandler = (function () {
     }
   };
 
-  const saveToLocalStorage = () => {
+  const saveToLocalStorageAndRender = () => {
     localStorage.setItem(localStorageProjectsArrayKey, JSON.stringify(projectsArray));
   };
 
@@ -35,7 +35,7 @@ const projectsHandler = (function () {
   };
 
   const persistToLocalStorage = () => {
-    saveToLocalStorage();
+    saveToLocalStorageAndRender();
     render();
   };
 
