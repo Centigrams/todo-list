@@ -39,6 +39,12 @@ const projectsHandler = (function () {
     render();
   };
 
+  const highLightProject = (selectedProject) => {
+    const sidePanelProjectButtons = document.querySelectorAll('.project');
+    sidePanelProjectButtons.forEach((projectButton) => projectButton.classList.remove('active-project'));
+    selectedProject.classList.add('active-project');
+  };
+
   const addNewProject = () => {
     let inputValue = newProjectInputField.value;
     if (inputValue === '' || inputValue === null) return;
@@ -51,6 +57,7 @@ const projectsHandler = (function () {
   return {
     render,
     addNewProject,
+    highLightProject,
   }
 }());
 
