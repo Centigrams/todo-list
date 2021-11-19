@@ -11,7 +11,7 @@ const eventListeners = (function () {
     const sidePanel = document.getElementById('side-panel');
     sidePanel.addEventListener('click', e => {
       if (e.target.tagName.toLowerCase() === 'li') {
-        projectsHandler.highLightProject(e.target);
+        projectsHandler.selectProject(e.target);
       }
     });
   };
