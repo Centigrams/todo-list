@@ -12,6 +12,7 @@ const eventListeners = (function () {
     sidePanel.addEventListener('click', e => {
       if (e.target.tagName.toLowerCase() === 'li') {
         projectsHandler.selectProject(e.target);
+        projectsHandler.persistToLocalStorage();
       }
     });
   };
