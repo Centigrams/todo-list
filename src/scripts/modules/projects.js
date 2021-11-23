@@ -10,22 +10,54 @@ const projectsHandler = (function () {
   let projectsArray = JSON.parse(localStorage.getItem(localStorageProjectsArrayKey)) || [];
   let selectedProject = localStorage.getItem(localStorageSelectedProjectKey);
 
-  // This will retain selected project in local storage
-  const initalizeSelectedProject = () => {
-    const allProjectsInSidePanel = document.querySelectorAll('.project');
-    allProjectsInSidePanel.forEach((project) => {
-      if (project.id === selectedProject) {
-        project.classList.add('active-project');
-        //TODO: Idea, get project, then display selected project to header.
-      }
-    });
-  };
   // Only used to display project name in the project header.
-  //TODO: Fix issue where stored selected project's text doesn't show up on refresh.
   const displaySelectedProject = () => {
     const projectTitleHeader = document.getElementById('project-title');
     let activeProject = document.querySelector('.active-project');
     projectTitleHeader.textContent = activeProject.textContent;
+  };
+
+  /**
+  * @param  {string} selectedProject - Refers to event listener's selected list at {@link eventListeners.sidePanel}
+  * Highlight the selected project: remove previous active project style then add to current selected project
+  */
+  const highLightProject = (selectedProjectTarget) => {
+    const sidePanelProjectButtons = document.querySelectorAll('.project');
+    sidePanelProjectButtons.forEach((projectButton) => projectButton.classList.remove('active-project'));
+    selectedProjectTarget.classList.add('active-project');
+  };
+
+  // Combine the two functions, initialize both at once in sidePanel's event listener. 
+  const selectProject = (selectedProjectTarget) => {
+    highLightProject(selectedProjectTarget);
+    selectedProject = selectedProjectTarget.id;
+    displaySelectedProject();
+  };
+
+  const saveSelectedProjectToLocalStorage = () => {
+    localStorage.setItem(localStorageSelectedProjectKey, selectedProject);
+  };
+
+  const setAllProjectAsDefault = () => {
+    const allProject = document.getElementById('all');
+    selectProject(allProject);
+    saveSelectedProjectToLocalStorage();
+  };
+
+  const initalizeSelectedProject = () => {
+    /**
+     * Higlight the selected project (refer to local storage) 
+     * and display the selected project to the project header.
+     */
+    const allProjectsInSidePanel = document.querySelectorAll('.project');
+    allProjectsInSidePanel.forEach((project) => {
+      if (project.id === selectedProject) {
+        project.classList.add('active-project');
+      } else if (selectedProject === null) {
+        setAllProjectAsDefault();
+      }
+    });
+    displaySelectedProject();
   };
 
   const renderProjects = () => {
@@ -44,9 +76,13 @@ const projectsHandler = (function () {
     }
   };
 
-  const saveToLocalStorageAndRender = () => {
+  const saveProjectsArrayToLocalStorage = () => {
     localStorage.setItem(localStorageProjectsArrayKey, JSON.stringify(projectsArray));
-    localStorage.setItem(localStorageSelectedProjectKey, selectedProject);
+  };
+
+  const saveToLocalStorageAndRender = () => {
+    saveProjectsArrayToLocalStorage();
+    saveSelectedProjectToLocalStorage();
   };
 
   const render = () => {
@@ -68,23 +104,6 @@ const projectsHandler = (function () {
     newProjectInputForm.reset();
     projectsArray.push(newProject);
     persistToLocalStorage();
-  };
-
-  /**
-   * @param  {string} selectedProject - Refers to event listener's selected list at {@link eventListeners.sidePanel}
-   * Highlight the selected project: remove previous active project style then add to current selected project
-   */
-  const highLightProject = (selectedProjectTarget) => {
-    const sidePanelProjectButtons = document.querySelectorAll('.project');
-    sidePanelProjectButtons.forEach((projectButton) => projectButton.classList.remove('active-project'));
-    selectedProjectTarget.classList.add('active-project');
-  };
-
-  // Combine the two functions, initialize both at once in sidePanel's event listener. 
-  const selectProject = (selectedProjectTarget) => {
-    highLightProject(selectedProjectTarget);
-    selectedProject = selectedProjectTarget.id;
-    displaySelectedProject();
   };
 
   return {
