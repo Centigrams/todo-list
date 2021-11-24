@@ -58,12 +58,29 @@
     padding: 0.938rem 0 0.938rem 0.938rem;
     color: black;
     margin-bottom: 0.625rem;
-    cursor: pointer;
     position: relative;
     border-top-left-radius: 1.25rem;
     border-bottom-left-radius: 1.25rem;
     font-family: var(--roboto-font);
     font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#side-panel .delete-button-container {
+    display: inline-flex;
+    margin-right: 1rem;
+}
+
+.project-delete-button {
+    height: 1.2rem;
+    width: 1.2rem;
+    display: flex;
+    align-self: center;
+}
+
+.project-delete-button:hover {
+    cursor: pointer;
 }
 
 #side-panel .active-project {

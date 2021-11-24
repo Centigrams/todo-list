@@ -1,4 +1,5 @@
 import { Project } from './factories/projects-factory.js';
+import DeleteButton from '/src/images/delete-button.png';
 
 const projectsHandler = (function () {
   const projectsContainer = document.querySelector('[data-projects]');
@@ -60,12 +61,24 @@ const projectsHandler = (function () {
     displaySelectedProject();
   };
 
+  // Create project elements in side panel excluding All, Scheduled, and Important
   const renderProjects = () => {
     projectsArray.forEach(project => {
       const listElement = document.createElement('li');
       listElement.setAttribute('id', project.id);
       listElement.classList.add('project');
       listElement.innerText = project.name;
+
+      const deleteButtonContainer = document.createElement('div');
+      deleteButtonContainer.classList.add('delete-button-container');
+
+      const deleteButton = new Image();
+      //* Refer to delete button's class to list element's id, delete the project if the two values match when clicked.
+      deleteButton.classList.add(project.id , "project-delete-button");
+      deleteButton.src = DeleteButton;
+
+      listElement.appendChild(deleteButtonContainer);
+      deleteButtonContainer.appendChild(deleteButton);
       projectsContainer.appendChild(listElement);
     });
   };
