@@ -73,8 +73,8 @@ const projectsHandler = (function () {
       deleteButtonContainer.classList.add('delete-button-container');
 
       const deleteButton = new Image();
-      //* Refer to delete button's class to list element's id, delete the project if the two values match when clicked.
-      deleteButton.classList.add(project.id , "project-delete-button");
+      deleteButton.classList.add("project-delete-button");
+      deleteButton.setAttribute('data-project', project.id);
       deleteButton.src = DeleteButton;
 
       listElement.appendChild(deleteButtonContainer);
