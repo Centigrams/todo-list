@@ -123,8 +123,9 @@ const projectsHandler = (function () {
     render,
     addNewProject,
     selectProject,
-    selectedProject,
     persistToLocalStorage,
+    projectsArray,
+    setAllProjectAsDefault,
   }
 }());
 
