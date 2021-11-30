@@ -1,5 +1,9 @@
 import { Todo } from "./factories/todos-factory";
 import { projectsHandler } from "./projects";
+import DeleteButton from '/src/images/delete-button.png';
+import NotImportant from '/src/images/not-important.png';
+import Important from '/src/images/important.png'
+import EditButton from '/src/images/edit-button.png';
 
 const todosHandler = (function () {
   const todosContainer = document.querySelector('[data-todos]');
@@ -9,21 +13,7 @@ const todosHandler = (function () {
   const scheduledTodos = document.querySelector('#scheduled');
   const importantTodos = document.querySelector('#important');
 
-  const createTodos = (todoDescription) => {
-    //TODO: Add "Important tag"
-    // <div class="todo">
-    //   <div class="left-container">
-    //     <input class="checkbox" type="checkbox"></input>
-    //     <p class ="task">Walk the dog.</p>
-    //   </div>
-    //   <div class="right-container">
-    //     <p class="task-date">12/12/2004</p>
-    //     <div class="edit-delete-container">
-    //       <button class="task-edit">Edit</button>
-    //       <button class="task-delete">Delete</button>
-    //     </div>
-    //   </div>
-    // </div>
+  const createTodos = (todoCompleted, todoDescription, todoId, todoImportant, todoDate) => {
     const todoDiv = document.createElement('div')
     todoDiv.classList.add('todo');
     todosContainer.appendChild(todoDiv);
@@ -35,6 +25,9 @@ const todosHandler = (function () {
     const checkBox = document.createElement('input')
     checkBox.classList.add('checkbox');
     checkBox.setAttribute('type', 'checkbox');
+    if (todoCompleted) {
+      checkBox.checked;
+    }
     leftContainerDiv.appendChild(checkBox);
 
     const taskDescription = document.createElement('p');
@@ -45,31 +38,44 @@ const todosHandler = (function () {
     const rightContainerDiv = document.createElement('div')
     rightContainerDiv.classList.add('right-container');
     todoDiv.appendChild(rightContainerDiv);
-
+    
     const dueDate = document.createElement('p');
     dueDate.classList.add('task-date');
-    dueDate.textContent = 'No due date';
+    dueDate.textContent = todoDate;
     rightContainerDiv.appendChild(dueDate);
 
     const editDeleteContainerDiv = document.createElement('div');
     editDeleteContainerDiv.classList.add('edit-delete-container')
     rightContainerDiv.appendChild(editDeleteContainerDiv);
 
-    const editButton = document.createElement('button');
+    const importantStar = new Image();
+    importantStar.classList.add('task-important-star');
+    importantStar.setAttribute('data-todo-important', todoImportant);
+    importantStar.setAttribute('data-todo-important-id', todoId);
+    if (todoImportant === false) {
+      importantStar.src = NotImportant; 
+    } else {
+      importantStar.src = Important;
+    }
+    editDeleteContainerDiv.appendChild(importantStar);
+
+    const editButton = new Image();
     editButton.classList.add('task-edit');
-    editButton.textContent = 'Edit';
+    editButton.setAttribute('data-todo-edit-button-id', todoId);
+    editButton.src = EditButton;
     editDeleteContainerDiv.appendChild(editButton);
 
-    const deleteButton = document.createElement('button');
+    const deleteButton = new Image();
     deleteButton.classList.add('task-delete');
-    deleteButton.textContent = 'Delete';
+    deleteButton.setAttribute('data-todo-delete-button-id', todoId);
+    deleteButton.src = DeleteButton;
     editDeleteContainerDiv.appendChild(deleteButton);
   };
 
   const renderAllTodos = () => {
     projectsHandler.projectsArray.forEach(project => {
-      project.tasks.forEach(task => {
-        createTodos(task.description);
+      project.tasks.forEach(todo => {
+        createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
       });
     });
   };
@@ -85,8 +91,8 @@ const todosHandler = (function () {
   const renderTodosInSelectedProject = (selectedProject) => {
     projectsHandler.projectsArray.forEach(project => {
       if (selectedProject.id === project.id) {
-        project.tasks.forEach(task => {
-          createTodos(task.description);
+        project.tasks.forEach(todo => {
+          createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
         });
       }
     });

@@ -206,23 +206,33 @@ main #main-panel {
 
 .todo .right-container {
     display: flex;
-    width: 15rem;
+    width: 20rem;
     justify-content: space-between;
     align-items: center;
 }
 
+.task-important-star {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 .right-container .edit-delete-container {
     display: flex;
-    justify-content: space-between;
-    width: 5.8rem;
+    justify-content: space-evenly;
+    width: 10.5rem;
 }
 
 .edit-delete-container .task-edit {
     cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem; 
 }
 
 .edit-delete-container .task-delete {
     cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .add-todo {
