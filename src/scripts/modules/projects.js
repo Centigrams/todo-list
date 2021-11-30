@@ -1,4 +1,5 @@
 import { Project } from './factories/projects-factory.js';
+import { todosHandler } from './todos.js';
 import DeleteButton from '/src/images/delete-button.png';
 
 const projectsHandler = (function () {
@@ -102,6 +103,7 @@ const projectsHandler = (function () {
     refreshProjectsList();
     renderProjects();
     initalizeSelectedProject();
+    todosHandler.render();
   };
 
   const persistToLocalStorage = () => {

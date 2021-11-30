@@ -1,4 +1,5 @@
 import { projectsHandler } from "./projects.js";
+import { todosHandler } from "./todos.js";
 import { projectEditMode } from "./edit-mode.js";
 
 const eventListeners = (function () {
@@ -24,6 +25,12 @@ const eventListeners = (function () {
       if (deleteButton === listElement) {
         projectEditMode.deleteProject(e.target);
       }
+    });
+
+    const newTodoInputForm = document.querySelector('[data-new-todo-input-form]');
+    newTodoInputForm.addEventListener('submit', e => {
+      e.preventDefault();
+      todosHandler.addNewTodo();
     });
   };
   return {
