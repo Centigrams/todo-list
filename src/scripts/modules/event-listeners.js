@@ -41,8 +41,16 @@ const eventListeners = (function () {
         todoEditMode.deleteTodo(e.target);
       }
     });
+
+    todosContainer.addEventListener('click', e => {
+      const importantStar = e.target.dataset.todoImportantId;
+      const todoDiv = e.target.parentNode.parentNode.parentNode.id;
+      if (importantStar === todoDiv) {
+        todoEditMode.toggleImportantStatus(e.target);
+      }
+    });
   };
-  
+
   return {
     initiateEventListeners,
   }

@@ -37,8 +37,26 @@ const todoEditMode = (function() {
     })
   };
 
+  const toggleImportantStatus = (todo) => {
+    const todoMarkedAsImportant = todo.parentNode.parentNode.parentNode;
+    projectsHandler.projectsArray.map(project => {
+      project.tasks.map(todo => {
+        if (todo.id === todoMarkedAsImportant.id) {
+          if (todo.important) {
+            todo.important = false;
+            projectsHandler.persistToLocalStorage();
+          } else {
+            todo.important = true;
+            projectsHandler.persistToLocalStorage();
+          }
+        }
+      });
+    });
+  };
+
   return {
     deleteTodo,
+    toggleImportantStatus,
   }
 }());
 
