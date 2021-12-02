@@ -16,6 +16,7 @@ const todosHandler = (function () {
   const createTodos = (todoCompleted, todoDescription, todoId, todoImportant, todoDate) => {
     const todoDiv = document.createElement('div')
     todoDiv.classList.add('todo');
+    todoDiv.setAttribute('id', todoId);
     todosContainer.appendChild(todoDiv);
 
     const leftContainerDiv = document.createElement('div')

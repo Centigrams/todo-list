@@ -1,6 +1,6 @@
 import { projectsHandler } from "./projects.js";
 import { todosHandler } from "./todos.js";
-import { projectEditMode } from "./edit-mode.js";
+import { projectEditMode, todoEditMode } from "./edit-mode.js";
 
 const eventListeners = (function () {
   const initiateEventListeners = () => {
@@ -19,7 +19,7 @@ const eventListeners = (function () {
     });
 
     const projectsContainer = document.querySelector('[data-projects]');
-    projectsContainer.addEventListener('click', e=> {
+    projectsContainer.addEventListener('click', e => {
       const deleteButton = e.target.dataset.project;
       const listElement = e.target.parentNode.parentNode.id
       if (deleteButton === listElement) {
@@ -32,7 +32,17 @@ const eventListeners = (function () {
       e.preventDefault();
       todosHandler.addNewTodo();
     });
+
+    const todosContainer = document.querySelector('[data-todos]');
+    todosContainer.addEventListener('click', e => {
+      const deleteButton = e.target.dataset.todoDeleteButtonId;
+      const todoDiv = e.target.parentNode.parentNode.parentNode.id;
+      if (deleteButton === todoDiv) {
+        todoEditMode.deleteTodo(e.target);
+      }
+    });
   };
+  
   return {
     initiateEventListeners,
   }

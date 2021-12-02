@@ -22,4 +22,24 @@ const projectEditMode = (function () {
   }
 }());
 
-export { projectEditMode };
+const todoEditMode = (function() {
+  const deleteTodo = (todo) => {
+    const todoContainer = document.querySelector('[data-todos]');
+    const todoDeleted = todo.parentNode.parentNode.parentNode;
+    const index = [...todoContainer.children].indexOf(todoDeleted);
+    projectsHandler.projectsArray.map(project => {
+      project.tasks.map(todo => {
+        if (todo.id === todoDeleted.id) {
+          project.tasks.splice(index, 1);
+          projectsHandler.persistToLocalStorage();
+        }
+      });
+    })
+  };
+
+  return {
+    deleteTodo,
+  }
+}());
+
+export { projectEditMode, todoEditMode };
