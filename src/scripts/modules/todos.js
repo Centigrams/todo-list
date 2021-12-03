@@ -25,9 +25,12 @@ const todosHandler = (function () {
 
     const checkBox = document.createElement('input')
     checkBox.classList.add('checkbox');
+    checkBox.setAttribute('data-checkbox-id', todoId);
     checkBox.setAttribute('type', 'checkbox');
     if (todoCompleted) {
-      checkBox.checked;
+      checkBox.checked = true;
+    } else {
+      checkBox.checked = false;
     }
     leftContainerDiv.appendChild(checkBox);
 

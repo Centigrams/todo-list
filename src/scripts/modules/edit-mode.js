@@ -54,9 +54,27 @@ const todoEditMode = (function() {
     });
   };
 
+  const toggleTodoCheckbox = (todo) => {
+    const todoCompleted = todo.parentNode.parentNode;
+    projectsHandler.projectsArray.map(project => {
+      project.tasks.map(todo => {
+        if (todo.id === todoCompleted.id) {
+          if (todo.completed) {
+            todo.completed = false;
+            projectsHandler.persistToLocalStorage();
+          } else {
+            todo.completed = true;
+            projectsHandler.persistToLocalStorage();
+          }
+        }
+      });
+    });
+  };
+
   return {
     deleteTodo,
     toggleImportantStatus,
+    toggleTodoCheckbox
   }
 }());
 

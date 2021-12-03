@@ -49,6 +49,14 @@ const eventListeners = (function () {
         todoEditMode.toggleImportantStatus(e.target);
       }
     });
+
+    todosContainer.addEventListener('click', e => {
+      const todoCheckbox = e.target.dataset.checkboxId
+      const todoDiv = e.target.parentNode.parentNode.id;
+      if (todoCheckbox === todoDiv) {
+        todoEditMode.toggleTodoCheckbox(e.target);
+      }
+    });
   };
 
   return {
