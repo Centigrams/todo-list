@@ -89,7 +89,13 @@ const todosHandler = (function () {
   };
 
   const renderImportantTodos = () => {
-    console.log("Important")
+    projectsHandler.projectsArray.forEach(project => {
+      project.tasks.forEach(todo => {
+        if (todo.important) {
+          createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
+        }
+      });
+    });
   };
 
   const renderTodosInSelectedProject = (selectedProject) => {
