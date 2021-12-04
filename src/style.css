@@ -204,6 +204,10 @@ main #main-panel {
     align-items: center;
 }
 
+.todo .completed-task {
+    text-decoration: line-through;
+}
+
 .todo .right-container {
     display: flex;
     width: 20rem;

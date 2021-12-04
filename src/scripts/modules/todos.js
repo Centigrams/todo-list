@@ -27,17 +27,19 @@ const todosHandler = (function () {
     checkBox.classList.add('checkbox');
     checkBox.setAttribute('data-checkbox-id', todoId);
     checkBox.setAttribute('type', 'checkbox');
-    if (todoCompleted) {
-      checkBox.checked = true;
-    } else {
-      checkBox.checked = false;
-    }
     leftContainerDiv.appendChild(checkBox);
 
     const taskDescription = document.createElement('p');
     taskDescription.classList.add('task');
     taskDescription.textContent = todoDescription;
     leftContainerDiv.appendChild(taskDescription);
+    if (todoCompleted) {
+      checkBox.checked = true;
+      taskDescription.classList.add('completed-task');
+    } else {
+      checkBox.checked = false;
+      taskDescription.classList.remove('completed-task');
+    }
 
     const rightContainerDiv = document.createElement('div')
     rightContainerDiv.classList.add('right-container');
@@ -85,7 +87,13 @@ const todosHandler = (function () {
   };
 
   const renderScheduledTodos = () => {
-    console.log("Scheduled")
+    projectsHandler.projectsArray.forEach(projects => {
+      projects.tasks.forEach(todo => {
+        if (todo.date !== 'No due date') {
+          createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
+        }
+      });
+    });
   };
 
   const renderImportantTodos = () => {
