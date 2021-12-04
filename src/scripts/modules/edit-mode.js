@@ -27,8 +27,8 @@ const todoEditMode = (function() {
     const todoContainer = document.querySelector('[data-todos]');
     const todoDeleted = todo.parentNode.parentNode.parentNode;
     const index = [...todoContainer.children].indexOf(todoDeleted);
-    projectsHandler.projectsArray.map(project => {
-      project.tasks.map(todo => {
+    projectsHandler.projectsArray.forEach(project => {
+      project.tasks.forEach(todo => {
         if (todo.id === todoDeleted.id) {
           project.tasks.splice(index, 1);
           projectsHandler.persistToLocalStorage();
@@ -39,8 +39,8 @@ const todoEditMode = (function() {
 
   const toggleImportantStatus = (todo) => {
     const todoMarkedAsImportant = todo.parentNode.parentNode.parentNode;
-    projectsHandler.projectsArray.map(project => {
-      project.tasks.map(todo => {
+    projectsHandler.projectsArray.forEach(project => {
+      project.tasks.forEach(todo => {
         if (todo.id === todoMarkedAsImportant.id) {
           if (todo.important) {
             todo.important = false;
@@ -56,8 +56,8 @@ const todoEditMode = (function() {
 
   const toggleTodoCheckbox = (todo) => {
     const todoCompleted = todo.parentNode.parentNode;
-    projectsHandler.projectsArray.map(project => {
-      project.tasks.map(todo => {
+    projectsHandler.projectsArray.forEach(project => {
+      project.tasks.forEach(todo => {
         if (todo.id === todoCompleted.id) {
           if (todo.completed) {
             todo.completed = false;
