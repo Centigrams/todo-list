@@ -23,9 +23,9 @@ const projectEditMode = (function () {
 }());
 
 const todoEditMode = (function() {
-  const deleteTodo = (todo) => {
+  const deleteTodo = (todoClicked) => {
     const todoContainer = document.querySelector('[data-todos]');
-    const todoDeleted = todo.parentNode.parentNode.parentNode;
+    const todoDeleted = todoClicked.parentNode.parentNode.parentNode;
     const index = [...todoContainer.children].indexOf(todoDeleted);
     projectsHandler.projectsArray.forEach(project => {
       project.tasks.forEach(todo => {
@@ -37,8 +37,8 @@ const todoEditMode = (function() {
     })
   };
 
-  const toggleImportantStatus = (todo) => {
-    const todoMarkedAsImportant = todo.parentNode.parentNode.parentNode;
+  const toggleImportantStatus = (todoClicked) => {
+    const todoMarkedAsImportant = todoClicked.parentNode.parentNode.parentNode;
     projectsHandler.projectsArray.forEach(project => {
       project.tasks.forEach(todo => {
         if (todo.id === todoMarkedAsImportant.id) {
@@ -54,8 +54,8 @@ const todoEditMode = (function() {
     });
   };
 
-  const toggleTodoCheckbox = (todo) => {
-    const todoCompleted = todo.parentNode.parentNode;
+  const toggleTodoCheckbox = (todoClicked) => {
+    const todoCompleted = todoClicked.parentNode.parentNode;
     projectsHandler.projectsArray.forEach(project => {
       project.tasks.forEach(todo => {
         if (todo.id === todoCompleted.id) {
@@ -74,7 +74,7 @@ const todoEditMode = (function() {
   return {
     deleteTodo,
     toggleImportantStatus,
-    toggleTodoCheckbox
+    toggleTodoCheckbox,
   }
 }());
 
