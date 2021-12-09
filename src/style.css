@@ -190,7 +190,7 @@ main #main-panel {
     width: 100%;
 }
 
-.todo .checkbox {
+.checkbox {
     margin-right: 1rem;
     align-self: center;
     width: 1.5rem;
@@ -256,3 +256,52 @@ main #main-panel {
 .add-todo:focus {
     outline: none;
 }
+
+.todo-edited {
+    margin: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.1rem solid blue;
+    border-bottom: 0.1rem solid blue;
+    background-color: var(--main-panel-color);
+    height: 2.5rem;
+}
+
+.todo-edited .left-container {
+    display: flex;
+    width: 100%;
+}
+
+.todo-edited .left-container .edit-description-input-field {
+    font-family: inherit;
+    font-size: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 90%;
+}
+
+.todo-edited .right-container {
+    display: flex;
+    width: 30rem;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.todo-edited .right-container .date-input {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.todo-edited .right-container .save-button {
+    width: 3rem;
+    border: 0.1rem solid black;
+}
+
+.todo-edited .right-container .cancel-button {
+    width: 3rem;
+    background: none;
+    border: 0.1rem solid black;
+}
+

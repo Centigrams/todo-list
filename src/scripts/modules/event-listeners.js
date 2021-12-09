@@ -57,6 +57,11 @@ const eventListeners = (function () {
         todoEditMode.toggleTodoCheckbox(e.target);
       }
     });
+
+    todosContainer.addEventListener('click', e => {
+      if (!e.target.classList.contains('task-edit')) return
+      todoEditMode.editTodo(e.target);
+    });
   };
 
   return {
