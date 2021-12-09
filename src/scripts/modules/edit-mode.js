@@ -93,11 +93,11 @@ const todoEditMode = (function() {
     //TODO: Checkbox, Input field, Date input, Important Star, Save Button, Cancel Button
 
     const leftContainerDiv = document.createElement('div');
-    leftContainerDiv.setAttribute('class', 'left-container');
+    leftContainerDiv.classList.add('left-container-edit-mode');
     todoSelected.appendChild(leftContainerDiv);
 
     const todoCheckbox = document.createElement('input');
-    todoCheckbox.classList.add('checkbox');
+    todoCheckbox.classList.add('checkbox-edit-mode');
     todoCheckbox.setAttribute('data-checkbox-id', todoId);
     todoCheckbox.setAttribute('type', 'checkbox');
     leftContainerDiv.appendChild(todoCheckbox);
@@ -108,7 +108,7 @@ const todoEditMode = (function() {
     leftContainerDiv.appendChild(todoDescriptionInputField);
     
     const rightContainerDiv = document.createElement('div');
-    rightContainerDiv.setAttribute('class', 'right-container');
+    rightContainerDiv.setAttribute('class', 'right-container-edit-mode');
     todoSelected.appendChild(rightContainerDiv);
 
     const dateInput = document.createElement('input');
