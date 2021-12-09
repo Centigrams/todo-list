@@ -1,8 +1,7 @@
 import { Todo } from "./factories/todos-factory";
 import { projectsHandler } from "./projects";
+import { todosHelper } from "./todos-helper";
 import DeleteButton from '/src/images/delete-button.png';
-import NotImportant from '/src/images/not-important.png';
-import Important from '/src/images/important.png'
 import EditButton from '/src/images/edit-button.png';
 
 const todosHandler = (function () {
@@ -28,18 +27,13 @@ const todosHandler = (function () {
     checkBox.setAttribute('data-checkbox-id', todoId);
     checkBox.setAttribute('type', 'checkbox');
     leftContainerDiv.appendChild(checkBox);
+    todosHelper.initializeCheckbox(todoCompleted, checkBox);
 
     const taskDescription = document.createElement('p');
     taskDescription.classList.add('task');
     taskDescription.textContent = todoDescription;
     leftContainerDiv.appendChild(taskDescription);
-    if (todoCompleted) {
-      checkBox.checked = true;
-      taskDescription.classList.add('completed-task');
-    } else {
-      checkBox.checked = false;
-      taskDescription.classList.remove('completed-task');
-    }
+    todosHelper.initializeDescriptionStrikeThrough(todoCompleted, taskDescription);
 
     const rightContainerDiv = document.createElement('div')
     rightContainerDiv.classList.add('right-container');
@@ -58,11 +52,7 @@ const todosHandler = (function () {
     importantStar.classList.add('task-important-star');
     importantStar.setAttribute('data-todo-important', todoImportant);
     importantStar.setAttribute('data-todo-important-id', todoId);
-    if (todoImportant === false) {
-      importantStar.src = NotImportant; 
-    } else {
-      importantStar.src = Important;
-    }
+    todosHelper.initializeImportantStar(todoImportant, importantStar);
     editDeleteContainerDiv.appendChild(importantStar);
 
     const editButton = new Image();
