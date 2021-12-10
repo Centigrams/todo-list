@@ -61,16 +61,6 @@ const projectsHandler = (function () {
      * Higlight the selected project (refer to local storage) 
      * and display the selected project to the project header.
      */
-     if (
-        selectedProject === 'scheduled' 
-     || selectedProject === 'important' 
-     || selectedProject === 'all' 
-     || selectedProject === ''
-     ) {
-      hideAddNewTaskForm();
-    } else {
-      displayAddNewTaskForm();
-    }
     const allProjectsInSidePanel = document.querySelectorAll('.project');
     allProjectsInSidePanel.forEach((project) => {
       if (project.id === selectedProject) {
@@ -80,6 +70,17 @@ const projectsHandler = (function () {
       }
     });
     displaySelectedProject();
+    
+    if (
+      selectedProject === 'scheduled'
+      || selectedProject === 'important'
+      || selectedProject === 'all'
+      || selectedProject === ''
+    ) {
+      hideAddNewTaskForm();
+    } else {
+      displayAddNewTaskForm();
+    }
   };
 
   // Create project elements in side panel excluding All, Scheduled, and Important
