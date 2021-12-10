@@ -46,11 +46,31 @@ const projectsHandler = (function () {
     saveSelectedProjectToLocalStorage();
   };
 
+  const hideAddNewTaskForm = () => {
+    const inputForm = document.querySelector('[data-new-todo-input-form]');
+    inputForm.style.display = 'none';
+  };
+
+  const displayAddNewTaskForm = () => {
+    const inputForm = document.querySelector('[data-new-todo-input-form]');
+    inputForm.style.display = 'block';
+  };
+
   const initalizeSelectedProject = () => {
     /**
      * Higlight the selected project (refer to local storage) 
      * and display the selected project to the project header.
      */
+     if (
+        selectedProject === 'scheduled' 
+     || selectedProject === 'important' 
+     || selectedProject === 'all' 
+     || selectedProject === ''
+     ) {
+      hideAddNewTaskForm();
+    } else {
+      displayAddNewTaskForm();
+    }
     const allProjectsInSidePanel = document.querySelectorAll('.project');
     allProjectsInSidePanel.forEach((project) => {
       if (project.id === selectedProject) {
