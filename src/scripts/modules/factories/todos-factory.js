@@ -4,7 +4,7 @@ function Todo(description) {
     description,
     id: Date.now().toString(),
     important: false,
-    date: 'No due date',
+    date: '',
   }
 }
 

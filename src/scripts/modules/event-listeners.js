@@ -62,6 +62,17 @@ const eventListeners = (function () {
       if (!e.target.classList.contains('task-edit')) return
       todoEditMode.editTodo(e.target);
     });
+
+    todosContainer.addEventListener('click', e => {
+      if (!e.target.classList.contains('cancel-button')) return;
+      // Exit todo edit mode on cancel by just rendering selected project
+      projectsHandler.persistToLocalStorage();
+    });
+
+    todosContainer.addEventListener('click', e => {
+      if (!e.target.classList.contains('save-button')) return;
+      todoEditMode.saveTodo(e.target);
+    });
   };
 
   return {

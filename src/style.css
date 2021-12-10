@@ -282,25 +282,11 @@ main #main-panel {
     width: 90%;
 }
 
-.todo-edited .left-container-edit-mode .checkbox-edit-mode {
-    margin-right: 1rem;
-    align-self: center;
-    width: 1.5rem;
-    height: 1.5rem;
-    cursor: pointer;
-}
-
 .todo-edited .right-container-edit-mode {
     display: flex;
     width: 30rem;
     justify-content: space-between;
     align-content: center;
-}
-
-.todo-edited .right-container-edit-mode .task-important-star-edit-mode {
-    cursor: pointer;
-    width: 1.5rem;
-    height: 1.5rem;
 }
 
 .todo-edited .right-container-edit-mode .date-input {
@@ -311,11 +297,13 @@ main #main-panel {
 .todo-edited .right-container-edit-mode .save-button {
     width: 3rem;
     border: 0.1rem solid black;
+    cursor: pointer;
 }
 
 .todo-edited .right-container-edit-mode .cancel-button {
     width: 3rem;
     background: none;
     border: 0.1rem solid black;
+    cursor: pointer;
 }
 

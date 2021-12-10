@@ -41,7 +41,7 @@ const todosHandler = (function () {
     
     const dueDate = document.createElement('p');
     dueDate.classList.add('task-date');
-    dueDate.textContent = todoDate;
+    todosHelper.initializeDate(dueDate, todoDate);
     rightContainerDiv.appendChild(dueDate);
 
     const editDeleteContainerDiv = document.createElement('div');
@@ -79,7 +79,7 @@ const todosHandler = (function () {
   const renderScheduledTodos = () => {
     projectsHandler.projectsArray.forEach(projects => {
       projects.tasks.forEach(todo => {
-        if (todo.date !== 'No due date') {
+        if (todo.date !== '') {
           createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
         }
       });

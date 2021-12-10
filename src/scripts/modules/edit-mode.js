@@ -1,6 +1,6 @@
 import { projectsHandler } from "./projects";
-import NotImportant from '/src/images/not-important.png';
-import Important from '/src/images/important.png'
+import { format, parse } from "date-fns";
+import { todosHelper } from "./todos-helper";
 
 const projectEditMode = (function () {
   // Avoids returning to "All" if the project isn't deleted
@@ -24,7 +24,7 @@ const projectEditMode = (function () {
   }
 }());
 
-const todoEditMode = (function() {
+const todoEditMode = (function () {
   const deleteTodo = (todoClicked) => {
     const todoContainer = document.querySelector('[data-todos]');
     const todoDeleted = todoClicked.parentNode.parentNode.parentNode;
@@ -77,36 +77,21 @@ const todoEditMode = (function() {
     todoSelected.innerHTML = "";
   };
 
-  const initiateTodoEditMode = (
-    todoSelected, 
-    todoCompleted, 
-    todoDescription, 
-    todoId, 
-    todoImportant, 
-    todoDate
-    ) => {
-    //TODO: Function which replaces div content for edit mode
-    //* After creating todo edit mode: get modified values when save is clicked, do nothing when canceled  
-    //TODO: Create new class similar to original todo class but for edit mode
-
+  const initiateTodoEditMode = (todoSelected, todoDescription, todoDate) => {
     todoSelected.setAttribute('class', 'todo-edited');
-    //TODO: Checkbox, Input field, Date input, Important Star, Save Button, Cancel Button
 
     const leftContainerDiv = document.createElement('div');
     leftContainerDiv.classList.add('left-container-edit-mode');
     todoSelected.appendChild(leftContainerDiv);
 
-    const todoCheckbox = document.createElement('input');
-    todoCheckbox.classList.add('checkbox-edit-mode');
-    todoCheckbox.setAttribute('data-checkbox-id', todoId);
-    todoCheckbox.setAttribute('type', 'checkbox');
-    leftContainerDiv.appendChild(todoCheckbox);
-
     const todoDescriptionInputField = document.createElement('input');
     todoDescriptionInputField.setAttribute('class', 'edit-description-input-field');
     todoDescriptionInputField.setAttribute('maxlength', 85);
     leftContainerDiv.appendChild(todoDescriptionInputField);
-    
+    todoDescriptionInputField.value = todoDescription;
+    todoDescriptionInputField.focus();
+    todoDescriptionInputField.select();
+
     const rightContainerDiv = document.createElement('div');
     rightContainerDiv.setAttribute('class', 'right-container-edit-mode');
     todoSelected.appendChild(rightContainerDiv);
@@ -114,18 +99,9 @@ const todoEditMode = (function() {
     const dateInput = document.createElement('input');
     dateInput.classList.add('date-input');
     dateInput.setAttribute('type', 'date');
+    dateInput.value = todoDate;
     rightContainerDiv.appendChild(dateInput);
 
-    const importantStar = new Image();
-    importantStar.classList.add('task-important-star');
-    importantStar.setAttribute('data-todo-important', todoImportant);
-    importantStar.setAttribute('data-todo-important-id', todoId);
-    if (todoImportant === false) {
-      importantStar.src = NotImportant; 
-    } else {
-      importantStar.src = Important;
-    }
-    rightContainerDiv.appendChild(importantStar);
 
     const saveButton = document.createElement('button');
     saveButton.setAttribute('class', 'save-button');
@@ -143,20 +119,29 @@ const todoEditMode = (function() {
     projectsHandler.projectsArray.forEach(project => {
       project.tasks.forEach(todo => {
         if (todo.id === todoEdited.id) {
-          const todoCompleted = todo.completed;
           const todoDescription = todo.description;
-          const todoId = todo.id;
-          const todoImportant = todo.important;
           const todoDate = todo.date;
           clearDiv(todoEdited);
           initiateTodoEditMode(
-            todoEdited, 
-            todoCompleted, 
-            todoDescription, 
-            todoId, 
-            todoImportant, 
+            todoEdited,
+            todoDescription,
             todoDate
           );
+        }
+      });
+    });
+  };
+
+  const saveTodo = (todoClicked) => {
+    const todoDescription = document.querySelector('.edit-description-input-field');
+    const dueDate = document.querySelector('.date-input');
+    const todoSaved = todoClicked.parentNode.parentNode;
+    projectsHandler.projectsArray.forEach(project => {
+      project.tasks.forEach(todo => {
+        if (todo.id === todoSaved.id) {
+          todo.description = todoDescription.value;
+          todosHelper.saveTodoCheckDate(dueDate, todo);
+          projectsHandler.persistToLocalStorage();
         }
       });
     });
@@ -167,6 +152,7 @@ const todoEditMode = (function() {
     toggleImportantStatus,
     toggleTodoCheckbox,
     editTodo,
+    saveTodo,
   }
 }());
 
