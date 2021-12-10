@@ -145,7 +145,7 @@ main #main-panel {
 }
 
 #project-title-container #project-title {
-    margin-left: 1rem;
+    margin-left: 2rem;
     font-size: 2.5rem;
 }
 
@@ -153,10 +153,6 @@ main #main-panel {
     font-family: 'Roboto', sans-serif;
     display: grid;
     grid-template-columns: auto 20rem;
-}
-
-#todo-information-container {
-    background-color: cadetblue;
 }
 
 #todo-list-container {
@@ -246,8 +242,6 @@ main #main-panel {
     align-items: center;
     border: none;
     width: 98.75%;
-    /* border-top: 0.1rem solid blue; */
-    /* border-bottom: 0.1rem solid blue; */
     background-color: var(--main-panel-color);
     height: 2.5rem;
     font-size: inherit;
