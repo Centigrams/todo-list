@@ -1,6 +1,6 @@
 import NotImportant from '/src/images/not-important.png';
 import Important from '/src/images/important.png'
-import { format, parse } from "date-fns";
+import { format, parse, isToday, isTomorrow, isYesterday } from "date-fns";
 
 /**
  * To reduce boilerplate code on todos.js and edit-mode.js, 
@@ -48,14 +48,26 @@ const todosHelper = (function () {
       const dateResult = format(parsedDate, "MM/dd/yyyy");
       todo.date = dateResult;
     }
-  }
+  };
 
+  const initializeDateCheck = (dueDateElement) => {
+    const dateString = dueDateElement.textContent;
+    const parsedDate = parse(dateString, 'MM/dd/yyyy', new Date());
+    if (isToday(parsedDate)) {
+      dueDateElement.textContent = 'Today';
+    } else if (isTomorrow(parsedDate)) {
+      dueDateElement.textContent = 'Tomorrow';
+    } else if (isYesterday(parsedDate)) {
+      dueDateElement.textContent = 'Yesterday';
+    }
+  }
   return {
     initializeImportantStar,
     initializeCheckbox,
     initializeDescriptionStrikeThrough,
     initializeDate,
     saveTodoCheckDate,
+    initializeDateCheck,
   }
 }());
 

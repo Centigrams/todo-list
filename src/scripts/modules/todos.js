@@ -42,6 +42,7 @@ const todosHandler = (function () {
     const dueDate = document.createElement('p');
     dueDate.classList.add('task-date');
     todosHelper.initializeDate(dueDate, todoDate);
+    todosHelper.initializeDateCheck(dueDate);
     rightContainerDiv.appendChild(dueDate);
 
     const editDeleteContainerDiv = document.createElement('div');
