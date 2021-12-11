@@ -50,6 +50,7 @@ const todosHelper = (function () {
     }
   };
 
+  // Does not modify todo.date, only the element used to display the date
   const initializeDateCheck = (dueDateElement) => {
     const dateString = dueDateElement.textContent;
     const parsedDate = parse(dateString, 'MM/dd/yyyy', new Date());
@@ -60,7 +61,8 @@ const todosHelper = (function () {
     } else if (isYesterday(parsedDate)) {
       dueDateElement.textContent = 'Yesterday';
     }
-  }
+  };
+  
   return {
     initializeImportantStar,
     initializeCheckbox,
