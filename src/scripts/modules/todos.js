@@ -149,6 +149,7 @@ const todosHandler = (function () {
   const render = () => {
     refreshTodoList();
     renderTodos();
+    todosHelper.initializeScrollWheel();
   };
 
   return {

@@ -62,6 +62,17 @@ const todosHelper = (function () {
       dueDateElement.textContent = 'Yesterday';
     }
   };
+
+  const initializeScrollWheel = () => {
+    const todoListDiv = document.querySelector('#todo-list');
+    const todosContainer = document.querySelector('[data-todos]');
+    const todosContainerAsArray = [...todosContainer.children];
+    if (todosContainerAsArray.length < 15) {
+      todoListDiv.setAttribute('class', 'todo-list-with-less-15-todos');
+    } else {
+      todoListDiv.classList.remove('todo-list-with-less-15-todos');
+    }
+  };
   
   return {
     initializeImportantStar,
@@ -70,6 +81,7 @@ const todosHelper = (function () {
     initializeDate,
     saveTodoCheckDate,
     initializeDateCheck,
+    initializeScrollWheel,
   }
 }());
 

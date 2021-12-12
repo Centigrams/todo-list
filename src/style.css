@@ -166,7 +166,7 @@ main #main-panel {
     height: 45rem;
 }
 
-#todo-list::-webkit-scrollbar {
+.todo-list-with-less-15-todos::-webkit-scrollbar {
     display: none;
 }
 
