@@ -1,5 +1,4 @@
 import { projectsHandler } from "./projects";
-import { format, parse } from "date-fns";
 import { todosHelper } from "./todos-helper";
 
 const projectEditMode = (function () {
@@ -26,17 +25,24 @@ const projectEditMode = (function () {
 
 const todoEditMode = (function () {
   const deleteTodo = (todoClicked) => {
-    const todoContainer = document.querySelector('[data-todos]');
+    /**
+     * Check if a project contains the specific todo which matches 
+     * the deleted todo's id. Get the index of that todo within the 
+     * project that contains it and use the index to remove the todo.
+     * ---
+     * This solution fixes the issue where the deleted
+     * task is not removed in all, important, or scheduled. If it does however,
+     * it deletes the wrong task because it uses the wrong index for splicing. 
+     */
     const todoDeleted = todoClicked.parentNode.parentNode.parentNode;
-    const index = [...todoContainer.children].indexOf(todoDeleted);
     projectsHandler.projectsArray.forEach(project => {
-      project.tasks.forEach(todo => {
-        if (todo.id === todoDeleted.id) {
-          project.tasks.splice(index, 1);
-          projectsHandler.persistToLocalStorage();
-        }
-      });
-    })
+      const checkIfProjectExists = project.tasks.some(todo => todoDeleted.id === todo.id);
+      if (checkIfProjectExists) {
+        let index = project.tasks.findIndex(todo => todo.id === todoDeleted.id);
+        project.tasks.splice(index, 1);
+      };
+    });
+    projectsHandler.persistToLocalStorage();
   };
 
   const toggleImportantStatus = (todoClicked) => {
