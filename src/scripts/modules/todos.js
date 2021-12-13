@@ -68,43 +68,101 @@ const todosHandler = (function () {
     deleteButton.src = DeleteButton;
     editDeleteContainerDiv.appendChild(deleteButton);
   };
+  
+  /**
+   * There are three main steps before the todos are displayed:
+   * 
+   * 1. Empty the todosDisplayed list.
+   * 
+   * 2. Add the todo in the todosDisplayed list depending on the project selected.
+   * 
+   * 3. Sort the todos.
+   * 
+   * 4. Display each todos in the todosDisplayed list.
+   * 
+   * This implementation is more flexible than directly creating the todo from
+   * the "project" objects since it allows the todos to be sorted.
+   */
+  let todosDisplayed = [];
 
+  const clearTodosDisplayed = () => {
+    todosDisplayed = [];
+  };
+
+  const sortTodosByOrderCreated = () => {
+    todosDisplayed.sort((a,b) => a.id - b.id);
+  };
+  
+  const sortTodosByImportant = () => {
+    todosDisplayed.sort((a,b) => {
+      return (a.important === b.important) ? 0 : a.important ? -1 : 1;
+    });
+  };
+
+  const sortTodosByCompletion = () => {
+    todosDisplayed.sort((a,b) => {
+      return (a.completed === b.completed) ? 0 : b.completed ? -1 : 1;
+    });
+  };
+
+  const sortTodos = () => {
+    sortTodosByOrderCreated();
+    sortTodosByImportant();
+    sortTodosByCompletion();
+  };
+
+  const displayTodos = () => {
+    sortTodos();
+    todosDisplayed.forEach(todo => {
+      createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
+    });
+  };
+  
   const renderAllTodos = () => {
+    clearTodosDisplayed();
     projectsHandler.projectsArray.forEach(project => {
       project.tasks.forEach(todo => {
-        createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
+        todosDisplayed.push(todo);
       });
     });
+    displayTodos();
   };
 
   const renderScheduledTodos = () => {
+    clearTodosDisplayed();
     projectsHandler.projectsArray.forEach(projects => {
       projects.tasks.forEach(todo => {
         if (todo.date !== '') {
-          createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
+          todosDisplayed.push(todo);
         }
       });
     });
+    displayTodos();
   };
 
   const renderImportantTodos = () => {
+    clearTodosDisplayed();
     projectsHandler.projectsArray.forEach(project => {
       project.tasks.forEach(todo => {
         if (todo.important) {
-          createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
+          todosDisplayed.push(todo);
+          console.log(true)
         }
       });
     });
+    displayTodos();
   };
 
   const renderTodosInSelectedProject = (selectedProject) => {
+    clearTodosDisplayed();
     projectsHandler.projectsArray.forEach(project => {
       if (selectedProject.id === project.id) {
         project.tasks.forEach(todo => {
-          createTodos(todo.completed, todo.description, todo.id, todo.important, todo.date);
+          todosDisplayed.push(todo);
         });
       }
     });
+    displayTodos();;
   };
 
   const renderTodos = () => {
